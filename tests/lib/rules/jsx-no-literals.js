@@ -49,6 +49,20 @@ ruleTester.run('jsx-no-literals', rule, {
           render() {
             return (
               <div>
+                <button type="button" ></button>
+              </div>
+            );
+          }
+        }
+      `,
+      options: [{noStrings: true, allowedStrings: ['button', 'submit']}],
+      parser: parsers.BABEL_ESLINT
+    }, {
+      code: `
+        class Comp1 extends Component {
+          render() {
+            return (
+              <div>
                 {'asdjfl'}
               </div>
             );
