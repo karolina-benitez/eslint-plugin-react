@@ -49,7 +49,7 @@ ruleTester.run('jsx-no-literals', rule, {
           render() {
             return (
               <div>
-                <button type="button" ></button>
+                <button type="button"></button>
               </div>
             );
           }
