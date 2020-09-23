@@ -61,20 +61,26 @@ ruleTester.run('jsx-max-props-per-line', rule, {
   //   ].join('\n'),
   //   options: [{maximum: 2}]
   // }, {
-  //   code: [
-  //     '<Hello lastName="Smith" middleName="Bob"',
-  //     '/>'
-  //   ].join('\n'),
-  //   options: [{optionPlaceholder: true}]
-  // }, {
-  //   code: [
-  //     '<Hello',
-  //     'lastName="Smith"',
-  //     'middleName="Bob"',
-  //     'firstName="John"',
-  //     '/>'
-  //   ].join('\n'),
-  //   options: [{optionPlaceholder: true}]
+    code: [
+      '<Hello lastName="Smith" middleName="Bob"',
+      '/>'
+    ].join('\n'),
+    options: [{maximum: 2, when: "multiLineAfterMaximum"}]
+  },{
+    code: [
+      '<Hello lastName="Smith"',
+      '/>'
+    ].join('\n'),
+    options: [{maximum: 1, when: "multiLineAfterMaximum"}]
+  }, {
+    code: [
+      '<Hello',
+      'lastName="Smith"',
+      'middleName="Bob"',
+      'firstName="John"',
+      '/>'
+    ].join('\n'),
+    options: [{maximum: 2, when: "multiLineAfterMaximum"}]
   }],
 
   invalid: [{
@@ -249,7 +255,7 @@ ruleTester.run('jsx-max-props-per-line', rule, {
       'middleName="Bob"',
       '/>'
     ].join('\n'),
-    options: [{optionPlaceholder: true}],
+    options: [{maximum: 2, when: "multiLineAfterMaximum"}],
     errors: [{message: 'Props `lastName` and `middleName` must be placed on a single line'}]//need to add error message to rule file
   }, {
     code: [
@@ -258,7 +264,7 @@ ruleTester.run('jsx-max-props-per-line', rule, {
       'firstName="John"',
       '/>'
     ].join('\n'),
-    options: [{optionPlaceholder: false}],
+    options: [{maximum: 2, when: "multiLineAfterMaximum"}],
     errors: [{message: 'Prop `lastName` must be placed on a new line'}]
   }]
 });
