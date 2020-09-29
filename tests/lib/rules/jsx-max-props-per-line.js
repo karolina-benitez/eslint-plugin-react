@@ -26,7 +26,7 @@ const parserOptions = {
 
 const ruleTester = new RuleTester({parserOptions});
 ruleTester.run('jsx-max-props-per-line', rule, {
-  valid: [{
+  valid: [//{
   //   code: '<App />'
   // }, {
   //   code: '<App foo />'
@@ -62,10 +62,9 @@ ruleTester.run('jsx-max-props-per-line', rule, {
   //   options: [{maximum: 2}]
   // }, {
   //   code: [
-  //     '<Hello lastName="Smith" middleName="Bob"',
-  //     '/>'
+  //     '<Hello lastName="Smith" middleName="Bob" />'
   //   ].join('\n'),
-  //   options: [{optionPlaceholder: true}]
+  //   options: [{maximum: 2, when: "multiLineAfterMaximum"}]
   // }, {
   //   code: [
   //     '<Hello',
@@ -74,8 +73,9 @@ ruleTester.run('jsx-max-props-per-line', rule, {
   //     'firstName="John"',
   //     '/>'
   //   ].join('\n'),
-  //   options: [{optionPlaceholder: true}]
-  }],
+  //   options: [{maximum: 2, when: "multiLineAfterMaximum"}]
+  // }
+],
 
   invalid: [{
   //   code: '<App foo bar baz />;',
@@ -243,22 +243,21 @@ ruleTester.run('jsx-max-props-per-line', rule, {
   //   options: [{maximum: 2}],
   //   errors: [{message: 'Prop `baz` must be placed on a new line'}]
   // },{
-    code: [
-      '<Hello',
-      'lastName="Smith"',
-      'middleName="Bob"',
-      '/>'
-    ].join('\n'),
-    options: [{optionPlaceholder: true}],
-    errors: [{message: 'Props `lastName` and `middleName` must be placed on a single line'}]//need to add error message to rule file
-  }, {
+  //   code: [
+  //     '<Hello lastName="Smith"',
+  //     'middleName="Bob"',
+  //     '/>'
+  //   ].join('\n'),
+  //   options: [{maximum: 2, when: "multiLineAfterMaximum"}],
+  //   errors: [{message: `Props must be placed on the same line as the tag opening`}]
+  // }, {
     code: [
       '<Hello lastName="Smith"',
       'middleName="Bob"',
       'firstName="John"',
       '/>'
     ].join('\n'),
-    options: [{optionPlaceholder: false}],
+    options: [{maximum: 2, when: "multiLineAfterMaximum"}],
     errors: [{message: 'Prop `lastName` must be placed on a new line'}]
   }]
 });
