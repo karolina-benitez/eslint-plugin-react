@@ -67,11 +67,20 @@ The following patterns are **not** considered warnings:
 Possible values:
 - `always` (default) - Always check for max props per line.
 - `multiline` - Only check for max props per line when jsx tag spans multiple lines.
+- `multiLineAfterMaximum` - Checks for single line when props are below maximum and checks for multiline when props exceed maximum
 
 The following patterns are considered warnings:
 ```jsx
 // [1, { "when": "always" }]
 <Hello firstName="John" lastName="Smith" />
+// [2, { "when": "multiLineAfterMaximum" }]
+<Hello lastName="Smith"
+  middleName="Bob"
+/>
+<Hello lastName="Smith"
+  middleName="Bob"
+  firstName="John"
+/>
 ```
 
 The following patterns are **not** considered warnings:
@@ -81,6 +90,13 @@ The following patterns are **not** considered warnings:
 <Hello
   firstName="John"
   lastName="Smith"
+/>
+// [2, { "when": "multiLineAfterMaximum" }]
+<Hello lastName="Smith" middleName="Bob" />
+<Hello
+  lastName="Smith"
+  middleName="Bob"
+  firstName="John"
 />
 ```
 
